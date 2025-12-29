@@ -99,10 +99,25 @@ class AudioEngine {
       }
       const player = new Tone.Player(audioBuffer).toDestination();
       player.playbackRate = this.tapeSpeed;
+      player.loop = false;
       this.players[trackIndex] = player;
       return audioBuffer;
     }
     return null;
+  }
+
+  setTrackLoop(trackIndex: number, isLooping: boolean) {
+    if (this.players[trackIndex]) {
+      this.players[trackIndex]!.loop = isLooping;
+    }
+  }
+
+  clearTrack(trackIndex: number) {
+    if (this.players[trackIndex]) {
+      this.players[trackIndex]?.stop();
+      this.players[trackIndex]?.dispose();
+      this.players[trackIndex] = null;
+    }
   }
 
   playTape() {

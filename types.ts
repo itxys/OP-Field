@@ -18,6 +18,7 @@ export interface TapeTrack {
   isRecording: boolean;
   isMuted: boolean;
   volume: number;
+  isLooping: boolean;
   buffer?: AudioBuffer;
 }
 
